@@ -1,0 +1,82 @@
+﻿html, body {
+	width: 100%;
+	height: 100%;
+	font-family: 'Lato', sans-serif;
+	padding-top:30px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+@font-face {
+	font-family: 'Glyphicons Halflings';
+	src: url('fonts/glyphicons-halflings-regular.eot');
+	src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+	white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+	max-width: 280px;
+}
+
+#home {
+	background-color: #03396c;
+	width: 100%;
+	height: 500px;
+	display: table;
+	position: relative;
+	background-size: cover;
+	border-radius: 10px;
+}
+.landing-text {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	color: #fff;
+	font-size:100px;
+}
+
+.landing-text h1{
+	font-size:100px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-control {
+	font-size: 17px;
+	height: 44px;
+	-ms-border-radius: 9px;
+	border-radius: 9px;
+}
+
+.form-control:focus {
+	 border-color: #2196f3;
+	 box-shadow: none;
+	 -webkit-box-shadow: none;
+}
+
+#searchInput{
+	width: 300px;
+}
+
+#searchInput span button{
+	height:44px;
+}
+
+input[type=text]:disabled{
+	background-color:#fff;
+}

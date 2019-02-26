@@ -1,0 +1,83 @@
+﻿
+<div class="body-content" style="margin-top:100px">
+
+    <h3>Buscar usuario</h3>
+
+    <div id="error-message" class="alert alert-danger hidden" role="alert">
+        <h6>Por favor digite un numero de cedula valido</h6>
+    </div>
+
+    <div class="form-group">
+        <div id="searchInput" class="input-group">
+            @Html.TextBox("search", null, new { @class = "form-control", placeholder = "Buscar por cedula" })
+            <span class="input-group-btn">
+                <button id="btn-search" class="btn btn-primary" type="button">Buscar</button>
+            </span>
+        </div>
+    </div>
+
+
+    <br />
+    <h4>Informacion del usuario</h4>
+
+    <div class="form-group">
+        @Html.Label("Nombre")
+        @Html.TextBox("username", null, new { @class = "form-control", disabled = "true" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Apellido")
+        @Html.TextBox("lastname", null, new { @class = "form-control", disabled = "true" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Fecha de nacimiento")
+        @Html.TextBox("birthdate", null, new { @class = "form-control", placeholder = "dd/mmm/yy", disabled = "true" })
+    </div>
+
+</div>
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="message-title" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p id="message-details"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function ()
+        {
+            $("#search").inputmask("mask", { "mask": "09-9999-9999" }, { reverse: true });
+
+            $('#btn-search').click(function () {
+                var id = $('#search').val().replace('_','');
+                clearInputs();
+
+                if (id.length === 12) {
+                    $('#error-message').addClass('hidden');
+                    ProfileController.searchProfile(id,0);
+                } else {
+                    $('#error-message').removeClass('hidden');
+                }
+            });
+
+            function clearInputs() {
+                $('#username').val('');
+                $('#lastname').val('');
+                $('#birthdate').val('');
+            }
+        });
+    </script>
+}
+
