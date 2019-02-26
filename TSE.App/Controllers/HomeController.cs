@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Globalization;
 using System.Web.Mvc;
 using TSE.App.Core;
-using TSE.App.Core.Models;
 using TSE.App.Persistance;
 
 namespace TSE.App.Controllers
@@ -35,12 +34,17 @@ namespace TSE.App.Controllers
         {
             var profileId = id?.Replace("-", "");
 
-            if (string.IsNullOrEmpty(id) && profileId?.Length != 10) return Json(null,JsonRequestBehavior.AllowGet);
+            if (string.IsNullOrEmpty(id) && profileId?.Length != 10) return Json(null, JsonRequestBehavior.AllowGet);
 
             var profile = _unitOfwork.Profiles.GetProfile(profileId);
 
-            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(profile),
-                JsonRequestBehavior.AllowGet);
+            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                DateOfBirthFormat = profile.Birthdate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es")),
+                profile.Name,
+                profile.Lastname,
+                profile.Birthdate
+            }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -52,8 +56,13 @@ namespace TSE.App.Controllers
 
             var profile = _unitOfwork.Profiles.GetProfile_Linq(profileId);
 
-            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(profile),
-                JsonRequestBehavior.AllowGet);
+            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                DateOfBirthFormat = profile.Birthdate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es")),
+                profile.Name,
+                profile.Lastname,
+                profile.Birthdate
+            }), JsonRequestBehavior.AllowGet);
         }
     }
 }

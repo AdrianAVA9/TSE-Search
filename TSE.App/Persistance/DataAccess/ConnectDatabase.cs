@@ -9,7 +9,7 @@ namespace TSE.App.Persistance.AccessData
     {
         private static ConnectDatabase _instance { get; set; }
         private string CONNECTION_STRING { get; set; }
-        
+
         private ConnectDatabase()
         {
             CONNECTION_STRING = ConfigurationManager.ConnectionStrings["TSE-CONN_STRING"].ConnectionString;

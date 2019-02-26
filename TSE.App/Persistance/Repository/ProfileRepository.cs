@@ -13,6 +13,7 @@ namespace TSE.App.Persistance.Repository
         public ProfileRepository()
         {
             _instance = ConnectDatabase.GetInstance();
+
         }
 
         public Profile GetProfile(string id)
@@ -26,9 +27,9 @@ namespace TSE.App.Persistance.Repository
 
             var result = _instance.ExecuteQueryProcedure(operation);
 
-            if(result?.Count > 0)
+            if (result?.Count > 0)
             {
-                profile = new BuilderObjects<Profile>().Build(result[0],new Profile());
+                profile = new BuilderObjects<Profile>().Build(result[0], new Profile());
             }
 
             return profile;
@@ -42,7 +43,7 @@ namespace TSE.App.Persistance.Repository
 
             var existingProfile = context.ADRIAN_VEGA_ACEVEDO(id).ToList();
 
-            if(existingProfile?.Count > 0)
+            if (existingProfile?.Count > 0)
             {
                 return ProfileFactory.GetProfile(existingProfile[0]);
             }
