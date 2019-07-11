@@ -38,7 +38,7 @@ namespace TSE.App.Controllers
 
             var profile = _unitOfwork.Profiles.GetProfile(profileId);
 
-            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(new
+            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(profile == null ? null : new
             {
                 DateOfBirthFormat = profile.Birthdate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es")),
                 profile.Name,
@@ -56,7 +56,7 @@ namespace TSE.App.Controllers
 
             var profile = _unitOfwork.Profiles.GetProfile_Linq(profileId);
 
-            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(new
+            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(profile == null ? null : new
             {
                 DateOfBirthFormat = profile.Birthdate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es")),
                 profile.Name,
